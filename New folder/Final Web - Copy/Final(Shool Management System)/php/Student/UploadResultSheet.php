@@ -17,24 +17,20 @@ else{
 
 ?>
 
-<?php 
-                if(isset($_POST['assUpload'])){
-                    echo "sachintha"; 
-                    $fileName = $_FILES['ass']['name'];
-                    $fileTmpName = $_FILES['ass']['tmp_name'];
-                    $path = "uploads/".$fileName;
-                    echo $fileName;
-                        
-                    $query = "INSERT INTO `result` ('result_code', 'exam_id','resultsheet') VALUES ('1',20210101,'{$fileTmpName}')";
-                    $run = mysqli_query($con,$query);
-                        
-                    if($run){
-                        move_uploaded_file($fileTmpName,$path);
-                    }
-                }
-    
+<?php
 
-            ?>
+if(isset($_POST["uploadResult"])){
+    $fileName = $_FILES['ass']['name'];
+    $fileTmpName = $_FILES['ass']['tmp_name'];
+    $path = "uploads/".$fileName;
+    $query = "INSERT INTO `result` (`result_code`, `exam_id`, `result_sheet`) VALUES ('20', '20210102', '{$fileTmpName}');";
+    $run = mysqli_query($con,$query);
+    if($run){
+        move_uploaded_file($fileTmpName,$path);
+    }
+}
+
+?>
 
 
 
@@ -134,18 +130,7 @@ else{
             
                 </div><!--div class="headerTopic"-->
                 <div class="upload-section">
-                    <form action="StudentSubInside.php?subId=<?php echo $_GET['subId'] ?>" method="post" class="upload-form" enctype="multipart/form-data">
-                        <input type="file" name="ass" id="upload">
-                        <label for="upload">
-                            <img src="" alt="">
-                            <p>
-                                <strong>Drag and Drop</strong> file here <br>or
-                                <span>Browse</span> to begin the upload
-                            </p>
-                        </label><!--label for="upload"-->
-                        <button class="btnUpload" name="assUpload">Upload</button>
-                    </form>
-                </div><!--div class="upload-section"-->
+                
             </div><!--div class="fileUpload"-->
 
 
@@ -707,8 +692,11 @@ else{
                     </div>
                 </li>
                 <li>
-                    <div class="choose_file">
-                    <form action="UploadResultSheet.php" method="post" class="upload-form" enctype="multipart/form-data">
+                </li>
+            </ul>
+        </div>
+        
+        <form action="UploadResultSheet.php" method="post" class="upload-form" enctype="multipart/form-data">
                         <input type="file" name="ass" id="upload">
                         <label for="upload">
                             <img src="" alt="">
@@ -717,17 +705,9 @@ else{
                                 <span>Browse</span> to begin the upload
                             </p>
                         </label><!--label for="upload"-->
-                        <button class="btnUpload" name="assUpload">Upload</button>
+                        <button class="btnUpload" name="uploadResult">Upload</button>
+                        <!-- <input type="submit" value="Upload" name="assUpload"> -->
                     </form>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-
-
-     
-        
         
     </div>
 
@@ -744,9 +724,6 @@ else{
 
 
     </div>
-
-
-
 
 
 
