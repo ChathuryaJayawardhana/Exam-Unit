@@ -19,11 +19,13 @@ else{
 
 <?php 
                 if(isset($_POST['assUpload'])){
+                    echo "sachintha"; 
                     $fileName = $_FILES['ass']['name'];
                     $fileTmpName = $_FILES['ass']['tmp_name'];
                     $path = "uploads/".$fileName;
+                    echo $fileName;
                         
-                    $query = "INSERT INTO 'result'('result_code', 'exam_id','resultsheet') VALUES ('1','2','{$fileTmpName}')";
+                    $query = "INSERT INTO `result` ('result_code', 'exam_id','resultsheet') VALUES ('1',20210101,'{$fileTmpName}')";
                     $run = mysqli_query($con,$query);
                         
                     if($run){
