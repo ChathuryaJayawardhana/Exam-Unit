@@ -23,8 +23,8 @@ else{
                     $fileTmpName = $_FILES['ass']['tmp_name'];
                     $path = "uploads/".$fileName;
                         
-                    $query = "INSERT INTO 'result'('result_code', 'exam_id','resultsheet') VALUES ('{$result_code}','{$exam_id}','{$resultsheet}')";
-                    $run = mysqli_query($connection,$query);
+                    $query = "INSERT INTO 'result'('result_code', 'exam_id','resultsheet') VALUES ('1','2','{$fileTmpName}')";
+                    $run = mysqli_query($con,$query);
                         
                     if($run){
                         move_uploaded_file($fileTmpName,$path);
@@ -706,11 +706,18 @@ else{
                 </li>
                 <li>
                     <div class="choose_file">
-            <label for="choose_file">
-                <input type="file"  id="choose_file">
-                <span> Choose Files</span>
-            </label>
-        </div>
+                    <form action="UploadResultSheet.php" method="post" class="upload-form" enctype="multipart/form-data">
+                        <input type="file" name="ass" id="upload">
+                        <label for="upload">
+                            <img src="" alt="">
+                            <p>
+                                <strong>Drag and Drop</strong> file here <br>or
+                                <span>Browse</span> to begin the upload
+                            </p>
+                        </label><!--label for="upload"-->
+                        <button class="btnUpload" name="assUpload">Upload</button>
+                    </form>
+                    </div>
                 </li>
             </ul>
         </div>
